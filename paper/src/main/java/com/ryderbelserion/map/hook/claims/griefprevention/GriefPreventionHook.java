@@ -94,42 +94,10 @@ public class GriefPreventionHook implements Listener, Hook {
         return builder.build();
     }
 
-
-    private @NotNull String processPopup(
-            @NotNull final String popup,
-            @NotNull final GriefPreventionClaim claim
-            ) {
-        String result = popup;
-
-        if (result.contains("<owner>")) {
-            result = result.replace("<owner>", claim.getOwnerName());
-        }
-
-        if (result.contains("<trusts>")) {
-            result = result.replace("<trusts>", getTrusts(claim));
-        }
-
-        if (result.contains("<world>")) {
-            result = result.replace("<world>", claim.getWorld().getName());
-        }
-
-        if (result.contains("<id>")) {
-            result = result.replace("<id>", Long.toString(claim.getID()));
-        }
-
-        if (result.contains("<area>")) {
-            result = result.replace("<area>", Integer.toString(claim.getArea()));
-        }
-
-        if (result.contains("<width>")) {
-            result = result.replace("<width>", Integer.toString(claim.getWidth()));
-        }
-
-        if (result.contains("<height>")) {
-            result = result.replace("<height>", Integer.toString(claim.getHeight()));
-        }
-
-        return result;
+    private @NotNull String processPopup(@NotNull final String popup, @NotNull final GriefPreventionClaim claim) {
+        return popup.replace("<area>", Integer.toString(claim.getArea()))
+                .replace("<width>", Integer.toString(claim.getWidth()))
+                .replace("<height>", Integer.toString(claim.getHeight()));
     }
 
 
